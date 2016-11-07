@@ -6,6 +6,7 @@ pub fn main() {
 
 pub fn test_all(maxlen: u32) -> Vec<Vec<u32>> {
     // let chars = "abcdefghijklmnopqrstuvwxyz0123456789.,-!".chars();
+    let maxval = 12;
     let mut output = Vec::new(); // Vec of okay outputs
     let mut v = Vec::new();
     for _ in 0..maxlen {
@@ -13,11 +14,11 @@ pub fn test_all(maxlen: u32) -> Vec<Vec<u32>> {
     }
     println!("\n\n{:?}",v );
     'outer: loop {
-        if v[0] != 9 {
+        if v[0] != maxval {
             v[0] += 1;
         } else {
             let mut i = 0;
-            while v[i] == 9 {
+            while v[i] == maxval {
                 if i == maxlen as usize - 1 { break 'outer; }
                 v[i] = 0;
                 i += 1;
