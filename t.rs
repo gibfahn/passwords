@@ -1,11 +1,12 @@
 #![feature(inclusive_range_syntax)]
 pub fn main() {
-    test_all(3);
+    let results = test_all(3);
+    println!("\nResults: {:?}", results );
 }
 
-pub fn test_all(maxlen: u32) /*-> Vec<String>*/ {
+pub fn test_all(maxlen: u32) -> Vec<Vec<u32>> {
     // let chars = "abcdefghijklmnopqrstuvwxyz0123456789.,-!".chars();
-    // let mut output = Vec::new(); // Vec of okay outputs
+    let mut output = Vec::new(); // Vec of okay outputs
     let mut v = Vec::new();
     for _ in 0..maxlen {
         v.push(0); // create vector of lowest values
@@ -24,17 +25,17 @@ pub fn test_all(maxlen: u32) /*-> Vec<String>*/ {
             v[i] += 1;
         }
         print!("{:?} ", v);
-        // if test(v) { output.push(v.to_string())}
+        if test(&v) { output.push(v.clone()) }
     }
-    // if maxlen > 1 {
-    //     for i in test_all(maxlen-1){
-    //         output.push(i);
-    //     }
-    // }
-    // return output;
-    if maxlen > 1 { test_all(maxlen-1); } // Will be replaced by ^^
+    if maxlen > 1 {
+        for i in test_all(maxlen-1){
+            output.push(i);
+        }
+    }
+    return output;
 }
 
-pub fn test(s: Vec<char>) -> bool {
-    unimplemented!()
+pub fn test(s: &Vec<u32>) -> bool {
+    let good_strings = vec![vec![2],vec![3,4,1]];
+    good_strings.contains(s)
 }
